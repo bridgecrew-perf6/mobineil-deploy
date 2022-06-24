@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: neilapp1
+  name: neilapp1
+  namespace: neil-project
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: neilapp1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: neilapp1
+    spec:
+      containers:
+      - image: neilshub/mobi-neilapp:appv1
+        name: mobi-neilapp
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: neilsvc1
+  name: neilsvc1
+  namespace: neil-project
+spec:
+  ports:
+  - name: 1033-80
+    port: 1033
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: neilapp1
+  type: NodePort
+status:
+  loadBalancer: {}
