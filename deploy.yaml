@@ -19,12 +19,14 @@ spec:
         app: neilapp1
     spec:
       containers:
-      - image: neilshub/mobi-neilapp:appv1
+      - image: dockerneild/neilwebapp:appv1
         name: mobi-neilapp
         ports:
         - containerPort: 80
         resources: {}
         imagePullPolicy: Always
+        environment:
+          deploy: "app2"
 status: {}
 
 ---
